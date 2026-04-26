@@ -5,7 +5,7 @@ For mac users: It might be necessary to install libomp since it is a depedency f
 
 **How to run the code:**
 
-You need to create an access token for the tabpfn_client library. You do this by going to https://priorlabs.ai and clicking try TabPFN now, then you sign in/login. On your site you have your personal access token under API-keys. Create a .env file on your pc and write TABPFN_TOKEN= and write in you personal token here.
+You need to create an access token for the tabpfn_client library. You do this by going to https://priorlabs.ai and clicking try TabPFN now, then you sign in/login. On your site you have your personal access token under API-keys. Create a .env file on your pc and write TABPFN_TOKEN= you personal token.
 
 We have provided all the datasets in the datasets/ folder, and all forest diffusion models in the folder forest_diffusion_models/.
 
