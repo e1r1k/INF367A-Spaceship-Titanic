@@ -17,8 +17,10 @@ And then run the notebooks in this order:
 2. xgboost_imputation.ipynb
 3. model_selection.ipynb
 
+
 **Competition Description**
 We are partaking in a kaggle contest named Spaceship Titanic. Our task is to predict whether a passenger was transported to another dimension during the spacship's collision. We are given a training and a test dataset, so that is our starting point. We are aiming to find a good model that gets a great score on the unseen test dataset. The test dataset we are given does not contain a label so we need to create a csv file with passengerid and the predictions for the test dataset and send it to kaggle to receive our testscore.
+
 
 **Novel methods**
 TabPFN : TabPFN is a pretrained transformer, trained on synthetic data and optimized for small to medium sized tabular datasets. I implemented tabpfn using the tabpfn_client library, following the standard workflow from https://github.com/PriorLabs/tabpfn-client (under basic usage).  Three different models were trained on three different datasets(raw, preprocessed, augmented) using .fit(), and the validation accuracy was evaluated using accuracy_score where the arguments were true y_val and the result from model.predict(X_val) for each of the datasets. The results were stored in a dict alongside all the other models results for comparison. The TabPFN model trained on the preprocessed dataset achieved the best validation score overall.
