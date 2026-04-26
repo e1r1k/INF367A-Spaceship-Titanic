@@ -1,8 +1,10 @@
 **How to download all necessary libraries:**
+
 We have made a text file that contains all relevant libraries. You can simple write "pip install -r requirments.txt" in the terminal to install the packages listed.
 For mac users: It might be necessary to install libomp since it is a depedency for xgboost. If you do not already have it you can use the command "brew install libomp".
 
 **How to run the code:**
+
 You need to create an access token for the tabpfn_client library. You do this by going to https://priorlabs.ai and clicking try TabPFN now, then you sign in/login. On your site you have your personal access token under API-keys. Create a .env file on your pc and write TABPFN_TOKEN= and write in you personal token here.
 
 We have provided all the datasets in the datasets/ folder, and all forest diffusion models in the folder forest_diffusion_models/.
@@ -19,10 +21,12 @@ And then run the notebooks in this order:
 
 
 **Competition Description**
+
 We are partaking in a kaggle contest named Spaceship Titanic. Our task is to predict whether a passenger was transported to another dimension during the spacship's collision. We are given a training and a test dataset, so that is our starting point. We are aiming to find a good model that gets a great score on the unseen test dataset. The test dataset we are given does not contain a label so we need to create a csv file with passengerid and the predictions for the test dataset and send it to kaggle to receive our testscore.
 
 
 **Novel methods**
+
 TabPFN : TabPFN is a pretrained transformer, trained on synthetic data and optimized for small to medium sized tabular datasets. I implemented tabpfn using the tabpfn_client library, following the standard workflow from https://github.com/PriorLabs/tabpfn-client (under basic usage).  Three different models were trained on three different datasets(raw, preprocessed, augmented) using .fit(), and the validation accuracy was evaluated using accuracy_score where the arguments were true y_val and the result from model.predict(X_val) for each of the datasets. The results were stored in a dict alongside all the other models results for comparison. The TabPFN model trained on the preprocessed dataset achieved the best validation score overall.
 
 RandomRotationEnsemble: RandomRotationEnsemble is a Wrapper used to apply the random rotations of the feature space to each of the base learners in en ensemble of decision trees. Depending on the "base_learner" parameter it creates a randomly rotated Random Forest, a randomly rotated Extra Trees or lastly an ensemble of decision trees where their only difference is the inherent randomness within the model and their different rotations. It is implemented using numpy, pandas, sklearn and scipy. The rotations are only applied to the numerical features, which are found by taking all features with at least 10 unique values. Given that the splitting of data by bootstrapping is built into the RandomForest model from sklearn, we opted to use DecisionTreeClassifires as base learners and adding the boostrapping step ourselves to create the effect og Bagging. The rotation matrix for each base learner is stored, as when making predictions on new data each base learner has to receive the new data rotated with the according matrix.
