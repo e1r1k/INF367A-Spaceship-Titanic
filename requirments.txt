@@ -1,0 +1,9 @@
+tabpfn-client
+scikit-learn
+matplotlib
+seaborn
+dotenv
+numpy
+pandas
+scipy
+xgboost
