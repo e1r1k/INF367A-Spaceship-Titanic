@@ -3,6 +3,8 @@ We have made a text file that contains all relevant libraries. You can simple wr
 For mac users: It might be necessary to install libomp since it is a depedency for xgboost. If you do not already have it you can use the command "brew install libomp".
 
 **How to run the code:**
+You need to create an access token for the tabpfn_client library. You do this by going to https://priorlabs.ai and clicking try TabPFN now, then you sign in/login. On your site you have your personal access token under API-keys. Create a .env file on your pc and write TABPFN_TOKEN= and write in you personal token here.
+
 We have provided all the datasets in the datasets/ folder, and all forest diffusion models in the folder forest_diffusion_models/.
 
 If you do not want to regenerate the datasets and the models, simply run model_selection.ipynb. To understand the data it is ideal to read preprocessing.ipynb
@@ -33,7 +35,3 @@ The forest_diffusion_repaint_imputation() function takes a clean dataset with mi
 This allows us to train classifiers as we can remove missing values without loosing data, but the XGBoost diffusion models can also be used to generate completely synthetic data, which might improve generalization. This is done by generating a complete dataset full of noise and passing it through one model after the other, from most noisy to least. One limitation of data generation is that it is not able to replicate hard domain rules like people in CryoSleep not being able to spend money. To deal with this, postprocessing is applied to the affected column and remaining data is rescaled to normal values with respects to the original dataset.
 
 Lastly, the augmented dataset comprising equal parts imputed original data and synthetic samples (1:1 ratio, 13908 total samples) is processed to be in the same format as the baseline manually imputed non-augmented version for evaluation.
-
-
-**Security note:**
-Right now my acces token for tabpfn_client is in a .env file. if we were to publish the work on github we would need to make a .gitignore file that contained the .env file and specify in the readme that the user needs to login to priorlabs and generate an acces token themself. Right now the token is visible so the project should not be shared with anyone as is.
